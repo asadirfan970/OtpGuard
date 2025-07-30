@@ -1,0 +1,45 @@
+2025-07-27 21:58:46,604 - INFO - Loaded 1 scripts
+2025-07-27 21:58:46,618 - INFO - Loaded 1 countries
+2025-07-27 21:58:46,626 - INFO - Login successful
+2025-07-27 21:59:09,986 - INFO - Selected numbers file: C:/Users/Aisha/Downloads/numbers.txt
+2025-07-27 21:59:22,311 - INFO - Starting automation for MICO in Mali (++223)
+2025-07-27 21:59:22,320 - INFO - Automation started...
+2025-07-27 21:59:22,321 - INFO - This is a simulation. Real implementation will execute the automation script.
+2025-07-27 21:59:24,328 - INFO - Automation completed successfully!
+2025-07-27 23:38:18,409 - INFO - Loaded 1 scripts
+2025-07-27 23:38:18,420 - INFO - Loaded 1 countries
+2025-07-27 23:51:41,195 - INFO - Loaded 1 scripts
+2025-07-27 23:51:41,208 - INFO - Loaded 1 countries
+2025-07-27 23:51:43,667 - INFO - Logged out successfully
+2025-07-27 23:52:58,184 - INFO - Loaded 1 scripts
+2025-07-27 23:52:58,188 - INFO - Loaded 1 countries
+2025-07-27 23:52:58,189 - INFO - Login successful
+2025-07-28 00:02:39,591 - INFO - Loaded 1 scripts
+2025-07-28 00:02:39,600 - INFO - Loaded 1 countries
+2025-07-28 00:04:44,558 - INFO - Validated 6 numbers from C:/Users/Aisha/Downloads/numbers.txt
+2025-07-28 00:04:46,984 - INFO - Starting automation for MICO in Mali (++223)
+2025-07-28 00:04:54,428 - INFO - Installing dependencies...
+2025-07-28 00:04:57,511 - INFO - Dependencies installed successfully
+2025-07-28 00:04:57,515 - INFO - Downloading script from server...
+2025-07-28 00:04:59,575 - ERROR - Failed to download script: {"message":"Authentication required"}
+2025-07-28 00:06:50,645 - INFO - Loaded 1 scripts
+2025-07-28 00:06:50,655 - INFO - Loaded 1 countries
+2025-07-28 00:06:57,721 - INFO - Validated 6 numbers from C:/Users/Aisha/Downloads/numbers.txt
+2025-07-28 00:07:14,449 - INFO - Starting automation for MICO in Mali (++223)
+2025-07-28 00:07:16,254 - INFO - Installing dependencies...
+2025-07-28 00:07:18,959 - INFO - Dependencies installed successfully
+2025-07-28 00:07:18,962 - INFO - Downloading script from server...
+2025-07-28 00:07:21,027 - ERROR - Failed to download script: {"message":"Authentication required"}
+2025-07-28 00:07:55,145 - INFO - Loaded 1 scripts
+2025-07-28 00:07:55,156 - INFO - Loaded 1 countries
+2025-07-28 00:08:01,325 - INFO - Validated 6 numbers from C:/Users/Aisha/Downloads/numbers.txt
+2025-07-28 00:08:04,546 - INFO - Starting automation for MICO in Mali (++223)
+2025-07-28 00:08:05,869 - INFO - Installing dependencies...
+2025-07-28 00:08:08,608 - INFO - Dependencies installed successfully
+2025-07-28 00:08:08,610 - INFO - Downloading script from server...
+2025-07-28 00:08:08,611 - INFO - Debug: Session cookies: {}
+2025-07-28 00:08:10,651 - INFO - Debug: Test API call status: 200
+2025-07-28 00:08:10,654 - ERROR - Failed to download script: {"message":"Authentication required"}
+2025-07-28 00:13:29,749 - INFO - Loaded 1 scripts
+2025-07-28 00:13:29,757 - INFO - Loaded 1 countries
+2025-07-28 00:14:01,969 - INFO - Logged out successfully

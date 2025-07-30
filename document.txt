@@ -1,0 +1,478 @@
+===============================================================================
+                    WORK BREAKDOWN STRUCTURE (WBS)
+                  SECURE OTP AUTOMATION PLATFORM (OtpGuard)
+===============================================================================
+
+PROJECT OVERVIEW:
+A full-stack OTP automation platform with React/TypeScript admin portal and 
+supporting infrastructure for managing desktop client users who execute 
+automated OTP workflows on Android devices.
+
+TEAM COMPOSITION: 2 Developers
+- Developer 1 (Lead): Full-stack developer (Frontend + Backend + DevOps)
+- Developer 2: Frontend developer with backend support capabilities
+
+TOTAL PROJECT DURATION: 16-20 weeks (640-800 hours)
+ESTIMATED BUDGET: $64,000 - $80,000 (assuming $100/hour rate)
+
+===============================================================================
+                              PHASE 1: PROJECT SETUP
+===============================================================================
+
+1.1 PROJECT INITIALIZATION (Week 1)
+├── 1.1.1 Environment Setup
+│   ├── Development environment configuration
+│   ├── Version control setup (Git repository)
+│   ├── Package management and dependency installation
+│   └── Code editor and tooling configuration
+│   Duration: 8 hours | Assignee: Developer 1
+│
+├── 1.1.2 Architecture Planning
+│   ├── System architecture design
+│   ├── Database schema design
+│   ├── API endpoint planning
+│   └── Security considerations documentation
+│   Duration: 16 hours | Assignee: Developer 1
+│
+├── 1.1.3 Technology Stack Finalization
+│   ├── Frontend: React 18, TypeScript, Vite, Tailwind CSS
+│   ├── Backend: Express.js, SQLite, Drizzle ORM
+│   ├── Authentication: Session-based auth, bcrypt
+│   └── UI Components: Radix UI, Lucide icons
+│   Duration: 4 hours | Assignee: Both developers
+│
+└── 1.1.4 Project Structure Setup
+    ├── Folder structure creation
+    ├── Initial configuration files
+    ├── Build and development scripts
+    └── Linting and formatting setup
+    Duration: 8 hours | Assignee: Developer 1
+
+PHASE 1 TOTAL: 36 hours (1 week)
+
+===============================================================================
+                         PHASE 2: BACKEND DEVELOPMENT
+===============================================================================
+
+2.1 DATABASE LAYER (Week 2)
+├── 2.1.1 Database Schema Implementation
+│   ├── SQLite database setup
+│   ├── Drizzle ORM configuration
+│   ├── Table definitions (admins, users, countries, scripts, tasks)
+│   └── Database migration system
+│   Duration: 16 hours | Assignee: Developer 1
+│
+├── 2.1.2 Data Access Layer
+│   ├── Storage service implementation
+│   ├── CRUD operations for all entities
+│   ├── Database connection management
+│   └── Error handling and validation
+│   Duration: 20 hours | Assignee: Developer 1
+│
+└── 2.1.3 Database Testing
+    ├── Unit tests for storage operations
+    ├── Data integrity validation
+    └── Performance optimization
+    Duration: 8 hours | Assignee: Developer 1
+
+2.2 API DEVELOPMENT (Week 3-4)
+├── 2.2.1 Express Server Setup
+│   ├── Server configuration and middleware
+│   ├── Session management
+│   ├── CORS and security headers
+│   └── Request logging and error handling
+│   Duration: 12 hours | Assignee: Developer 1
+│
+├── 2.2.2 Authentication System
+│   ├── Admin login/logout endpoints
+│   ├── Desktop user registration/authentication
+│   ├── Password hashing with bcrypt
+│   ├── MAC address binding for desktop users
+│   └── Session-based authentication middleware
+│   Duration: 24 hours | Assignee: Developer 1
+│
+├── 2.2.3 Admin Portal APIs
+│   ├── User management endpoints (CRUD)
+│   ├── Country management endpoints
+│   ├── Script management endpoints
+│   ├── Task monitoring endpoints
+│   └── Dashboard statistics endpoints
+│   Duration: 32 hours | Assignee: Developer 1
+│
+├── 2.2.4 Desktop Client APIs
+│   ├── Device registration endpoint
+│   ├── Script download endpoint
+│   ├── Task status reporting endpoint
+│   └── File upload handling
+│   Duration: 16 hours | Assignee: Developer 1
+│
+└── 2.2.5 API Testing
+    ├── Unit tests for all endpoints
+    ├── Integration testing
+    ├── API documentation
+    └── Performance testing
+    Duration: 16 hours | Assignee: Developer 1
+
+PHASE 2 TOTAL: 144 hours (3.6 weeks)
+
+===============================================================================
+                        PHASE 3: FRONTEND DEVELOPMENT
+===============================================================================
+
+3.1 UI COMPONENT LIBRARY (Week 4-5)
+├── 3.1.1 Design System Setup
+│   ├── Tailwind CSS configuration
+│   ├── Color scheme and typography
+│   ├── Component spacing and sizing
+│   └── Dark/light theme setup
+│   Duration: 12 hours | Assignee: Developer 2
+│
+├── 3.1.2 Base UI Components
+│   ├── Radix UI component integration
+│   ├── Custom button, input, and form components
+│   ├── Modal and dialog components
+│   ├── Table and data display components
+│   └── Navigation and layout components
+│   Duration: 32 hours | Assignee: Developer 2
+│
+└── 3.1.3 Component Testing
+    ├── Component unit tests
+    ├── Storybook setup (optional)
+    └── Visual regression testing
+    Duration: 16 hours | Assignee: Developer 2
+
+3.2 ADMIN PORTAL PAGES (Week 6-8)
+├── 3.2.1 Authentication Pages
+│   ├── Login page with form validation
+│   ├── Session management
+│   ├── Route protection
+│   └── Error handling and user feedback
+│   Duration: 16 hours | Assignee: Developer 2
+│
+├── 3.2.2 Dashboard Page
+│   ├── System statistics display
+│   ├── Recent activity monitoring
+│   ├── Charts and data visualization
+│   └── Real-time updates
+│   Duration: 24 hours | Assignee: Developer 2
+│
+├── 3.2.3 User Management
+│   ├── User list with search and filtering
+│   ├── Create/Edit user modals
+│   ├── User activation/deactivation
+│   ├── MAC address management
+│   └── Bulk operations
+│   Duration: 32 hours | Assignee: Developer 2
+│
+├── 3.2.4 Country Management
+│   ├── Country list and configuration
+│   ├── Phone number validation rules
+│   ├── Country code management
+│   └── CRUD operations interface
+│   Duration: 20 hours | Assignee: Developer 2
+│
+├── 3.2.5 Script Management
+│   ├── Script upload interface
+│   ├── File organization by app name
+│   ├── Script versioning and metadata
+│   ├── Download and preview functionality
+│   └── File validation and security
+│   Duration: 28 hours | Assignee: Developer 2
+│
+└── 3.2.6 Task Monitoring
+    ├── Task list with advanced filtering
+    ├── Status tracking and updates
+    ├── Error log display
+    ├── Performance metrics
+    └── Export functionality
+    Duration: 24 hours | Assignee: Developer 2
+
+3.3 FRONTEND INTEGRATION (Week 8-9)
+├── 3.3.1 API Integration
+│   ├── React Query setup
+│   ├── API client configuration
+│   ├── Error handling and retry logic
+│   └── Loading states and user feedback
+│   Duration: 20 hours | Assignee: Developer 2
+│
+├── 3.3.2 State Management
+│   ├── Global state setup
+│   ├── Form state management
+│   ├── Cache management
+│   └── Real-time updates
+│   Duration: 16 hours | Assignee: Developer 2
+│
+└── 3.3.3 Navigation and Routing
+    ├── React Router setup
+    ├── Navigation structure
+    ├── Route guards and permissions
+    └── Breadcrumb navigation
+    Duration: 12 hours | Assignee: Developer 2
+
+PHASE 3 TOTAL: 252 hours (6.3 weeks)
+
+===============================================================================
+               PHASE 6: DESKTOP CLIENT DEVELOPMENT
+===============================================================================
+
+6.1 CLIENT SETUP AND CONFIGURATION (Week 9-10)
+├── 6.1.1 Environment Setup
+│   ├── Python virtual environment configuration
+│   ├── Dependency installation with `requirements.txt`
+│   └── ADB setup verification
+│   Duration: 10 hours | Assignee: Developer 2
+│
+├── 6.1.2 Application Architecture
+│   ├── GUI design using Tkinter
+│   ├── Login system integration
+│   ├── MAC address binding logic
+│   └── Script execution workflows
+│   Duration: 20 hours | Assignee: Developer 2
+│
+└── 6.1.3 Initial Testing
+    ├── Unit tests for individual components
+    ├── ADB connectivity tests
+    └── End-to-end login and task execution tests
+    Duration: 10 hours | Assignee: Developer 2
+
+6.2 UI AND FUNCTIONALITY (Week 11-12)
+├── 6.2.1 Feature Implementation
+│   ├── Script and country selection interfaces
+│   ├── File upload interactions
+│   ├── Real-time logging
+│   └── Automation start/stop controls
+│   Duration: 24 hours | Assignee: Developer 2
+│
+├── 6.2.2 Security Features
+│   ├── JWT token management
+│   ├── Secure configuration storage
+│   ├── HTTPS communication
+│   └── Error handling
+│   Duration: 12 hours | Assignee: Developer 2
+│
+└── 6.2.3 Advanced Features
+    ├── Executable creation with PyInstaller
+    ├── Temporary file management
+    ├── Multi-threading for UI responsiveness
+    └── Performance and memory optimization
+    Duration: 16 hours | Assignee: Developer 2
+
+6.3 DESKTOP CLIENT TESTING (Week 13)
+├── 6.3.1 Integration Testing
+│   ├── GUI and backend API testing
+│   ├── Device connectivity stress tests
+│   └── Full task execution workflow validation
+│   Duration: 16 hours | Assignee: Developer 1
+│
+├── 6.3.2 User Acceptance Testing
+│   ├── Feedback collection
+│   ├── Bug tracking and resolution
+│   ├── Iterative refinement
+│   └── Final approval
+│   Duration: 16 hours | Assignee: Both developers
+│
+└── 6.3.3 Deployment
+    ├── Executable packaging
+    ├── Distribution preparation
+    └── Installation guide and support documentation
+    Duration: 10 hours | Assignee: Developer 1
+
+PHASE 6 TOTAL: 134 hours (3.4 weeks)
+
+===============================================================================
+                       PHASE 4: INTEGRATION & TESTING
+===============================================================================
+
+4.1 SYSTEM INTEGRATION (Week 10)
+├── 4.1.1 Frontend-Backend Integration
+│   ├── API endpoint testing
+│   ├── Data flow validation
+│   ├── Error handling integration
+│   └── Performance optimization
+│   Duration: 20 hours | Assignee: Both developers
+│
+├── 4.1.2 File Upload System
+│   ├── Multi-part file upload
+│   ├── File validation and security
+│   ├── Progress tracking
+│   └── Error recovery
+│   Duration: 16 hours | Assignee: Developer 1
+│
+└── 4.1.3 Authentication Flow
+    ├── Login/logout flow testing
+    ├── Session management validation
+    ├── Permission-based access control
+    └── Security testing
+    Duration: 12 hours | Assignee: Developer 1
+
+4.2 TESTING SUITE (Week 11)
+├── 4.2.1 Unit Testing
+│   ├── Backend unit tests (Jest)
+│   ├── Frontend component tests (React Testing Library)
+│   ├── Utility function tests
+│   └── Test coverage reporting
+│   Duration: 24 hours | Assignee: Both developers
+│
+├── 4.2.2 Integration Testing
+│   ├── API integration tests
+│   ├── Database integration tests
+│   ├── End-to-end user flows
+│   └── Cross-browser testing
+│   Duration: 20 hours | Assignee: Both developers
+│
+└── 4.2.3 Performance Testing
+    ├── Load testing for API endpoints
+    ├── Frontend performance optimization
+    ├── Database query optimization
+    └── Memory usage analysis
+    Duration: 8 hours | Assignee: Developer 1
+
+PHASE 4 TOTAL: 100 hours (2.5 weeks)
+
+===============================================================================
+                      PHASE 5: DEPLOYMENT & DOCUMENTATION
+===============================================================================
+
+5.1 DEPLOYMENT PREPARATION (Week 12)
+├── 5.1.1 Production Build
+│   ├── Production configuration
+│   ├── Environment variables setup
+│   ├── Build optimization
+│   └── Asset compression
+│   Duration: 8 hours | Assignee: Developer 1
+│
+├── 5.1.2 Database Migration
+│   ├── Production database setup
+│   ├── Data migration scripts
+│   ├── Backup and recovery procedures
+│   └── Performance tuning
+│   Duration: 12 hours | Assignee: Developer 1
+│
+└── 5.1.3 Security Hardening
+    ├── Security headers configuration
+    ├── Input validation review
+    ├── Authentication security audit
+    └── Vulnerability assessment
+    Duration: 8 hours | Assignee: Developer 1
+
+5.2 DOCUMENTATION (Week 12-13)
+├── 5.2.1 Technical Documentation
+│   ├── API documentation
+│   ├── Database schema documentation
+│   ├── Deployment guide
+│   └── Troubleshooting guide
+│   Duration: 16 hours | Assignee: Developer 1
+│
+├── 5.2.2 User Documentation
+│   ├── Admin portal user guide
+│   ├── Desktop client setup guide
+│   ├── FAQ and common issues
+│   └── Video tutorials (optional)
+│   Duration: 12 hours | Assignee: Developer 2
+│
+└── 5.2.3 Developer Documentation
+    ├── Code documentation and comments
+    ├── Development environment setup
+    ├── Contributing guidelines
+    └── Architecture overview
+    Duration: 8 hours | Assignee: Both developers
+
+5.3 DEPLOYMENT & MONITORING (Week 13)
+├── 5.3.1 Production Deployment
+│   ├── Server setup and configuration
+│   ├── SSL certificate installation
+│   ├── Domain configuration
+│   └── Load balancer setup (if needed)
+│   Duration: 12 hours | Assignee: Developer 1
+│
+├── 5.3.2 Monitoring Setup
+│   ├── Application logging
+│   ├── Error tracking
+│   ├── Performance monitoring
+│   └── Health check endpoints
+│   Duration: 8 hours | Assignee: Developer 1
+│
+└── 5.3.3 User Acceptance Testing
+    ├── Admin portal testing
+    ├── Desktop client integration testing
+    ├── End-user feedback collection
+    └── Bug fixes and refinements
+    Duration: 16 hours | Assignee: Both developers
+
+PHASE 5 TOTAL: 100 hours (2.5 weeks)
+
+===============================================================================
+                            RISK MANAGEMENT
+===============================================================================
+
+HIGH-RISK ITEMS:
+1. Desktop client integration complexity - Buffer: +16 hours
+2. File upload security and validation - Buffer: +12 hours
+3. Real-time task monitoring implementation - Buffer: +8 hours
+4. Database performance with large datasets - Buffer: +8 hours
+5. Cross-platform desktop client compatibility - Buffer: +16 hours
+
+TOTAL RISK BUFFER: 60 hours (1.5 weeks)
+
+===============================================================================
+                              PROJECT SUMMARY
+===============================================================================
+
+PHASE BREAKDOWN:
+├── Phase 1: Project Setup           │  36 hours │  1.0 week
+├── Phase 2: Backend Development     │ 144 hours │  3.6 weeks
+├── Phase 3: Frontend Development    │ 252 hours │  6.3 weeks
+├── Phase 4: Integration & Testing   │ 100 hours │  2.5 weeks
+├── Phase 5: Deployment & Docs       │ 100 hours │  2.5 weeks
+├── Phase 6: Desktop Client Dev      │ 134 hours │  3.4 weeks
+└── Risk Buffer                      │  60 hours │  1.5 weeks
+    ─────────────────────────────────┼───────────┼──────────
+    TOTAL                            │ 826 hours │ 20.6 weeks
+
+RESOURCE ALLOCATION:
+├── Developer 1 (Lead): 458 hours (55% of total effort)
+├── Developer 2: 368 hours (45% of total effort)
+
+DELIVERABLES:
+├── Fully functional admin web portal
+├── REST API with all required endpoints
+├── SQLite database with complete schema
+├── Authentication and authorization system
+├── File upload and management system
+├── Task monitoring and reporting system
+├── Python desktop client with Tkinter GUI
+├── Cross-platform executable (PyInstaller)
+├── Complete documentation package
+├── Production-ready deployment
+└── Testing suite with >80% coverage
+
+TECHNOLOGY STACK:
+├── Web Frontend: React 18, TypeScript, Vite, Tailwind CSS, Radix UI
+├── Desktop Client: Python 3.8+, Tkinter, requests, uiautomator2
+├── Backend: Node.js, Express.js, TypeScript
+├── Database: SQLite with Drizzle ORM
+├── Authentication: Session-based with bcrypt, MAC address binding
+├── Development: ESBuild, Vite, Jest, React Testing Library, PyInstaller
+└── Deployment: Single-server deployment with reverse proxy
+
+ASSUMPTIONS:
+├── Requirements are stable and well-defined
+├── Android devices with USB debugging are available for testing
+├── ADB (Android Debug Bridge) is properly configured
+├── No major architectural changes during development
+├── Standard business hours (40 hours/week per developer)
+├── Regular client feedback and approval cycles
+└── Access to necessary development tools and services
+
+SUCCESS CRITERIA:
+├── All functional requirements implemented and tested
+├── System handles expected user load (100+ concurrent users)
+├── Security requirements met and validated
+├── User acceptance testing completed successfully
+├── Documentation is complete and accurate
+├── System is deployed and operational in production
+└── Handover and training completed
+
+===============================================================================
+                              END OF DOCUMENT
+===============================================================================

@@ -1,0 +1,187 @@
+📘 Secure OTP Automation Platform – Full System Documentation
+🔐 Overview
+Secure OTP Automation Platform is a robust two-part system that allows users to automate OTP-based login or registration workflows on Android applications. It is designed with enterprise-grade security, user-machine binding, and modular automation capabilities. The system comprises:
+•	A Backend Admin Web Portal (built with Node.js + NestJS + SQLite)
+•	A Desktop Client Application (built with Python + Tkinter)
+Users execute Python automation scripts locally that communicate with Android devices using ADB and uiautomator2. These scripts are securely provided by the backend based on user selection, while the backend manages all business logic, script injection, and machine security enforcement.
+________________________________________
+📆 System Architecture
+1. Backend Admin Portal
+•	Framework: Node.js + NestJS (TypeScript)
+•	Database: SQLite3
+•	Authentication: JWT
+•	Frontend: React.js (TypeScript)
+•	File Storage: Local server-side (for uploaded scripts)
+2. Desktop Client Application
+•	Language: Python 3.x
+•	UI: Tkinter
+•	Automation: uiautomator2, ADB
+•	Networking: requests, getmac
+•	Packaging: PyInstaller (.exe), Inno Setup (installer)
+________________________________________
+🔧 Technologies Used
+Component	Technology	Purpose
+Backend	Node.js + NestJS	REST API & Admin Logic
+Database	SQLite3	Lightweight persistent storage
+ORM	TypeORM	Type-safe data access
+Admin UI	React.js + TypeScript	Script, User, and Country Management
+Desktop App	Python + Tkinter	GUI for script execution
+Automation	uiautomator2 + ADB	Interact with Android apps
+Script Execution	subprocess + logging	Local script runtime monitoring
+Packaging	PyInstaller + Inno Setup	Build and install Desktop app
+________________________________________
+🔒 Security Model
+•	MAC Binding: Each user account is tied to a single PC via MAC address.
+•	JWT Authentication: All API calls are token-secured.
+•	Script Secrecy: Final script is downloaded as a temporary file and deleted post-execution.
+•	Phone Data: Uploaded phone numbers are never stored permanently.
+________________________________________
+🤝 System Workflow
+✉️ Admin Actions (Web Portal)
+1.	Admin logs in via React-based web interface.
+2.	Creates users (email + password).
+3.	Uploads automation Python scripts and associates them with app names.
+4.	Adds countries with respective country codes and expected phone number lengths.
+👤 User Flow (Desktop App)
+✅ First-Time Login (MAC Binding)
+•	User installs and opens desktop app.
+•	Enters email and password.
+•	MAC address is automatically fetched and sent to /auth/register-device.
+•	Server binds MAC address if it’s the first login.
+➡️ Standard Login
+•	Desktop app sends credentials + MAC address to /auth/login.
+•	Server checks for MAC match and returns a JWT if valid.
+🔁 Script Execution Flow
+1.	App fetches available scripts and country list via API.
+2.	User selects a script (e.g., MICO) and a country (e.g., Mali).
+3.	User uploads a numbers.txt file with phone numbers.
+4.	Backend:
+o	Validates phone numbers against selected country format (e.g., Mali = 8-digit numbers after +223).
+o	Converts and regenerates numbers.txt (1 number per line, no country code).
+o	Injects the numbers or script path into a secure copy of the automation script.
+o	Sends the script to desktop app as a downloadable payload.
+⚖️ Script Execution (Local)
+•	Desktop app stores the script and numbers.txt in a hidden temp folder.
+•	Ensures ADB and Python dependencies are installed.
+•	Connects to user’s Android device via ADB.
+•	Executes the script locally via subprocess.Popen().
+•	Displays real-time logs (Python print() output) in the UI.
+•	On completion, reports success/failure and OTP count to /api/tasks/report-status.
+•	Securely deletes all temp files.
+________________________________________
+🔗 API Endpoints
+Method	Endpoint	Description
+POST	/auth/register-device	Register user MAC address
+POST	/auth/login	Standard login + MAC verification
+GET	/api/scripts	List available scripts
+GET	/api/countries	List available countries
+POST	/api/scripts/download	Validate & inject numbers, return script
+POST	/api/tasks/report-status	Submit run status (success, OTPs, etc.)
+________________________________________
+🧑💻 Admin Web Portal UI
+•	Login Page: JWT-based secure access.
+•	Dashboard: Overview of users/scripts/tasks.
+•	Users Management: Create/edit/delete users; MAC visible in details.
+•	Country Management: CRUD for country names, codes, number lengths.
+•	Script Management: Upload .py files, map to apps.
+________________________________________
+💻 Desktop App UI (Tkinter)
+•	Login Window: Accepts email/password.
+•	Main Window:
+o	Dropdown for script selection
+o	Dropdown for country selection
+o	File picker for numbers.txt
+o	"Start Automation" button
+o	Real-time logging output pane
+________________________________________
+🧪 Swagger / OpenAPI Notes
+•	Use NestJS built-in Swagger module
+•	Document all endpoints with:
+o	Request schema
+o	Response schema
+o	Security requirements (JWT)
+Example endpoint doc:
+@ApiOperation({ summary: 'Login User' })
+@Post('auth/login')
+@ApiBody({ type: LoginDto })
+@ApiResponse({ status: 200, description: 'JWT token returned' })
+________________________________________
+🧾 Postman Collection Suggestions
+•	Include environment variables: {{base_url}}, {{token}}
+•	Collection folders:
+o	Auth
+o	Scripts
+o	Countries
+o	Execution
+•	Auto-script token storage on login
+________________________________________
+🧬 SQLite Schema (Simplified)
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  email TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL,
+  mac_address TEXT
+);
+
+CREATE TABLE countries (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  code TEXT NOT NULL,
+  number_length INTEGER
+);
+
+CREATE TABLE scripts (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  app_name TEXT NOT NULL,
+  file_path TEXT NOT NULL
+);
+
+CREATE TABLE tasks (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER,
+  script_id INTEGER,
+  country_id INTEGER,
+  status TEXT,
+  otp_processed INTEGER,
+  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+________________________________________
+🖥️ Tkinter Desktop App Scaffold
+from tkinter import *
+from tkinter import filedialog, messagebox
+
+root = Tk()
+root.title("Secure OTP Automation")
+
+Label(root, text="Select Script").pack()
+script_menu = StringVar()
+OptionMenu(root, script_menu, []).pack()
+
+Label(root, text="Select Country").pack()
+country_menu = StringVar()
+OptionMenu(root, country_menu, []).pack()
+
+Button(root, text="Upload numbers.txt", command=lambda: filedialog.askopenfilename()).pack()
+Button(root, text="Start Automation", command=lambda: print("Start clicked")).pack()
+
+log_output = Text(root, height=20, width=60)
+log_output.pack()
+
+root.mainloop()
+________________________________________
+🎯 AI Agent Prompt (Simple Words)
+Build a secure two-part automation platform:
+1.	A backend with Node.js and NestJS using SQLite. It should:
+•	Allow admin to log in, create users, bind their PC MAC address
+•	Let admin upload automation scripts and define countries with phone code and number length
+•	Provide APIs to desktop app to fetch scripts, countries, validate phone numbers and return Python script
+•	Receive task logs from the desktop app after script runs
+2.	A desktop app in Python with Tkinter that:
+•	Lets user log in, sending their MAC address to the backend
+•	Fetches list of scripts and countries
+•	Lets them upload phone number file, then starts automation
+•	Downloads the injected Python script, runs it locally
+•	Shows print() logs in UI and sends success/failure back to backend
+•	Deletes all temp files securely
+________________________________________
+
