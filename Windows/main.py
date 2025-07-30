@@ -33,7 +33,7 @@ class OTPAutomationApp:
         self.root.resizable(True, True)
         
         # API Configuration
-        self.base_url = "http://localhost:5000"  # Updated to match server port
+        self.base_url = "https://v0-secure-otp-automation-platform.vercel.app"  # Updated to Vercel deployment
         self.session = requests.Session()  # Use session for cookie handling
         self.mac_address = get_mac_address()
         
