@@ -4,7 +4,7 @@ import multer from "multer";
 import jwt from "jsonwebtoken";
 import { storage } from "./storage";
 import { AuthService } from "./auth";
-import { requireAuth, requireAdmin, requireUser, type AuthenticatedRequest } from "./middleware/auth";
+import { requireAuth, requireAdmin, requireUser, generateToken, type AuthenticatedRequest } from "./middleware/auth";
 import { FileService } from "./services/fileService";
 import { ScriptService } from "./services/scriptService";
 import { 
@@ -36,11 +36,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(401).json({ message: 'Invalid credentials' });
       }
       
-      // Set session
-      req.session.isAdmin = true;
-      req.session.adminEmail = email;
-      
-      res.json(result);
+      // In production, use JWT tokens; in development, use sessions
+      if (process.env.NODE_ENV === 'production') {
+        const token = generateToken({
+          id: result.admin.id,
+          email: result.admin.email,
+          type: 'admin'
+        });
+        
+        res.json({
+          ...result,
+          token
+        });
+      } else {
+        // Set session for development
+        req.session.isAdmin = true;
+        req.session.adminEmail = email;
+        
+        res.json(result);
+      }
     } catch (error: any) {
       res.status(400).json({ message: error.message });
     }
@@ -55,11 +69,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(401).json({ message: 'Invalid credentials' });
       }
       
-      // Set session
-      req.session.userId = result.user.id;
-      req.session.userEmail = result.user.email;
-      
-      res.json(result);
+      // In production, use JWT tokens; in development, use sessions
+      if (process.env.NODE_ENV === 'production') {
+        const token = generateToken({
+          id: result.user.id,
+          email: result.user.email,
+          type: 'user'
+        });
+        
+        res.json({
+          ...result,
+          token
+        });
+      } else {
+        // Set session for development
+        req.session.userId = result.user.id;
+        req.session.userEmail = result.user.email;
+        
+        res.json(result);
+      }
     } catch (error: any) {
       res.status(400).json({ message: error.message });
     }
@@ -74,11 +102,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(401).json({ message: 'Invalid credentials' });
       }
       
-      // Set session
-      req.session.userId = result.user.id;
-      req.session.userEmail = result.user.email;
-      
-      res.json(result);
+      // In production, use JWT tokens; in development, use sessions
+      if (process.env.NODE_ENV === 'production') {
+        const token = generateToken({
+          id: result.user.id,
+          email: result.user.email,
+          type: 'user'
+        });
+        
+        res.json({
+          ...result,
+          token
+        });
+      } else {
+        // Set session for development
+        req.session.userId = result.user.id;
+        req.session.userEmail = result.user.email;
+        
+        res.json(result);
+      }
     } catch (error: any) {
       res.status(400).json({ message: error.message });
     }

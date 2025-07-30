@@ -63,18 +63,25 @@ app.use((req, res, next) => {
   // Initialize database and create default admin
   try {
     console.log('Starting server initialization...');
-    // Temporarily disable database initialization for debugging
-    // const existingAdmin = await storage.getAdminByEmail('admin@admin.com');
-    // if (!existingAdmin) {
-    //   const hashedPassword = await bcrypt.hash('admin', 10);
-    //   await storage.createAdmin({
-    //     email: 'admin@admin.com',
-    //     password: hashedPassword
-    //   });
-    //   console.log('Default admin created: admin@admin.com/admin');
-    // }
+    
+    // Create default admin if none exists
+    const existingAdmin = await storage.getAdminByEmail('admin@otpguard.com');
+    if (!existingAdmin) {
+      const hashedPassword = await bcrypt.hash('admin123', 10);
+      await storage.createAdmin({
+        email: 'admin@otpguard.com',
+        password: hashedPassword
+      });
+      console.log('Default admin created: admin@otpguard.com/admin123');
+    } else {
+      console.log('Admin already exists');
+    }
   } catch (error) {
     console.error('Failed to initialize app:', error);
+    // Don't exit in production, just log the error
+    if (process.env.NODE_ENV !== 'production') {
+      process.exit(1);
+    }
   }
 
   const server = await registerRoutes(app);

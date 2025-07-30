@@ -15,10 +15,16 @@ class ApiClient {
       ...options.headers as Record<string, string>,
     };
 
+    // Add JWT token if available
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      headers.Authorization = `Bearer ${token}`;
+    }
+
     const response = await fetch(url, {
       ...options,
       headers,
-      credentials: 'include', // Include session cookies
+      credentials: 'include', // Include session cookies for development fallback
     });
 
     if (!response.ok) {
@@ -102,9 +108,18 @@ class ApiClient {
     formData.append('appName', appName);
     formData.append('file', file);
 
+    const headers: Record<string, string> = {};
+    
+    // Add JWT token if available
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      headers.Authorization = `Bearer ${token}`;
+    }
+
     const response = await fetch(`${this.baseUrl}/admin/scripts`, {
       method: 'POST',
       credentials: 'include',
+      headers,
       body: formData,
     });
 
