@@ -10,17 +10,24 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Session middleware
-app.use(session({
-  secret: process.env.SESSION_SECRET || 'otp-automation-secret',
-  resave: false,
-  saveUninitialized: false,
-  cookie: { 
-    secure: process.env.NODE_ENV === 'production',
-    maxAge: 24 * 60 * 60 * 1000,
-    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
-  }
-}));
+// Session middleware - simplified for serverless
+if (process.env.NODE_ENV === 'production') {
+  // In production/serverless, we'll use JWT tokens instead of sessions
+  app.use((req, res, next) => {
+    req.session = {} as any; // Mock session object
+    next();
+  });
+} else {
+  app.use(session({
+    secret: process.env.SESSION_SECRET || 'otp-automation-secret',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { 
+      secure: false,
+      maxAge: 24 * 60 * 60 * 1000
+    }
+  }));
+}
 
 app.use((req, res, next) => {
   const start = Date.now();

@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import multer from "multer";
+import jwt from "jsonwebtoken";
 import { storage } from "./storage";
 import { AuthService } from "./auth";
 import { requireAuth, requireAdmin, requireUser, type AuthenticatedRequest } from "./middleware/auth";
