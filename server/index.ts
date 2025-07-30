@@ -62,17 +62,17 @@ app.use((req, res, next) => {
 (async () => {
   // Initialize database and create default admin
   try {
-    // With Neon, tables should be created via migrations
-    // Create default admin if not exists
-    const existingAdmin = await storage.getAdminByEmail('admin@admin.com');
-    if (!existingAdmin) {
-      const hashedPassword = await bcrypt.hash('admin', 10);
-      await storage.createAdmin({
-        email: 'admin@admin.com',
-        password: hashedPassword
-      });
-      console.log('Default admin created: admin@admin.com/admin');
-    }
+    console.log('Starting server initialization...');
+    // Temporarily disable database initialization for debugging
+    // const existingAdmin = await storage.getAdminByEmail('admin@admin.com');
+    // if (!existingAdmin) {
+    //   const hashedPassword = await bcrypt.hash('admin', 10);
+    //   await storage.createAdmin({
+    //     email: 'admin@admin.com',
+    //     password: hashedPassword
+    //   });
+    //   console.log('Default admin created: admin@admin.com/admin');
+    // }
   } catch (error) {
     console.error('Failed to initialize app:', error);
   }
