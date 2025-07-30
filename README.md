@@ -1,5 +1,7 @@
 # Secure OTP Automation Platform
 
+🚀 **Status**: Ready for Vercel deployment!
+
 A full-stack OTP automation platform with React/TypeScript admin portal and supporting infrastructure for managing desktop client users who execute automated OTP workflows on Android devices.
 
 ## Prerequisites
