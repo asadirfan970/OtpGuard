@@ -3,7 +3,6 @@ import session from "express-session";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import "./types"; // Import session type definitions
-import { initializeDatabase } from "./database";
 import bcrypt from "bcrypt";
 import { storage } from "./storage";
 
@@ -52,8 +51,7 @@ app.use((req, res, next) => {
 (async () => {
   // Initialize database and create default admin
   try {
-    initializeDatabase();
-    
+    // With Neon, tables should be created via migrations
     // Create default admin if not exists
     const existingAdmin = await storage.getAdminByEmail('admin@admin.com');
     if (!existingAdmin) {
