@@ -21,6 +21,11 @@ import "./types";
 const upload = multer({ storage: multer.memoryStorage() });
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Test endpoint
+  app.get('/api/test', (req, res) => {
+    res.json({ message: 'API is working', timestamp: new Date().toISOString() });
+  });
+
   // Authentication routes
   app.post('/api/auth/admin-login', async (req, res) => {
     try {
