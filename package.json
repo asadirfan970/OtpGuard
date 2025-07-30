@@ -98,6 +98,7 @@
     "@types/react-dom": "^18.3.1",
     "@types/react-query": "^1.2.8",
     "@types/ws": "^8.5.13",
+    "@vercel/node": "^5.3.7",
     "@vitejs/plugin-react": "^4.3.2",
     "autoprefixer": "^10.4.20",
     "drizzle-kit": "^0.30.4",
@@ -109,7 +110,7 @@
     "vite": "^5.4.19"
   },
   "optionalDependencies": {
-    "bufferutil": "^4.0.8",
-    "@rollup/rollup-linux-x64-gnu": "^4.0.0"
+    "@rollup/rollup-linux-x64-gnu": "^4.0.0",
+    "bufferutil": "^4.0.8"
   }
 }
