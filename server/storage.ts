@@ -16,7 +16,7 @@ import {
   tasks
 } from "@shared/schema";
 import { randomUUID } from "crypto";
-import { eq, and } from "drizzle-orm";
+import { eq, sql, like } from "drizzle-orm";
 import { db } from "./database";
 
 export interface IStorage {
@@ -165,7 +165,7 @@ export class SQLiteStorage implements IStorage {
   async deleteUser(id: string): Promise<boolean> {
     try {
       const result = await db.delete(users).where(eq(users.id, id));
-      return result.changes > 0;
+      return result.rowCount ? result.rowCount > 0 : false;
     } catch (error) {
       console.error('Error deleting user:', error);
       return false;
@@ -218,7 +218,7 @@ export class SQLiteStorage implements IStorage {
   async deleteCountry(id: string): Promise<boolean> {
     try {
       const result = await db.delete(countries).where(eq(countries.id, id));
-      return result.changes > 0;
+      return result.rowCount ? result.rowCount > 0 : false;
     } catch (error) {
       console.error('Error deleting country:', error);
       return false;
@@ -271,7 +271,7 @@ export class SQLiteStorage implements IStorage {
   async deleteScript(id: string): Promise<boolean> {
     try {
       const result = await db.delete(scripts).where(eq(scripts.id, id));
-      return result.changes > 0;
+      return result.rowCount ? result.rowCount > 0 : false;
     } catch (error) {
       console.error('Error deleting script:', error);
       return false;
@@ -344,7 +344,7 @@ export class SQLiteStorage implements IStorage {
       const scriptCount = await db.select().from(scripts);
       const countryCount = await db.select().from(countries);
       const todayTasks = await db.select().from(tasks).where(
-        eq(tasks.timestamp, today + '%')
+        sql`DATE(${tasks.timestamp}) = ${today}`
       );
 
       return {
