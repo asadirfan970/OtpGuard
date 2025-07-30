@@ -3,13 +3,6 @@ import { neon } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
 import { scripts } from '../shared/schema';
 
-if (!process.env.DATABASE_URL) {
-  throw new Error('DATABASE_URL is not set');
-}
-
-const sql = neon(process.env.DATABASE_URL);
-const db = drizzle(sql);
-
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -26,6 +19,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
+    // Initialize database connection inside handler
+    if (!process.env.DATABASE_URL) {
+      return res.status(500).json({ message: 'Database not configured' });
+    }
+
+    const sql = neon(process.env.DATABASE_URL);
+    const db = drizzle(sql);
+
     const allScripts = await db.select().from(scripts);
     res.status(200).json(allScripts);
   } catch (error: any) {
