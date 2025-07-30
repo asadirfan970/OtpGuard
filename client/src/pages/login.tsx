@@ -25,12 +25,8 @@ export default function Login() {
     try {
       const response = await api.loginAdmin(formData.email, formData.password);
       
-      // Store JWT token if provided (production mode)
-      if (response.token) {
-        localStorage.setItem('authToken', response.token);
-      }
-      
-      setCurrentUser(response.admin);
+      // Store user and JWT token
+      setCurrentUser(response.admin, response.token);
       setLocation("/dashboard");
       toast({
         title: "Login successful",
