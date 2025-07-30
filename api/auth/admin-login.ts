@@ -6,13 +6,6 @@ import { eq } from 'drizzle-orm';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-if (!process.env.DATABASE_URL) {
-  throw new Error('DATABASE_URL is not set');
-}
-
-const sql = neon(process.env.DATABASE_URL);
-const db = drizzle(sql);
-
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -34,6 +27,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (!email || !password) {
       return res.status(400).json({ message: 'Email and password are required' });
     }
+
+    // Initialize database connection
+    if (!process.env.DATABASE_URL) {
+      return res.status(500).json({ message: 'Database not configured' });
+    }
+
+    const sql = neon(process.env.DATABASE_URL);
+    const db = drizzle(sql);
 
     // Check if admin exists
     const adminResults = await db.select().from(admins).where(eq(admins.email, email)).limit(1);
